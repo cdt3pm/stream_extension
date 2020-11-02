@@ -1,0 +1,5 @@
+toolbar button
+	monitors for first stream packet
+	gives notification
+	on notification click, copy URL to clipboard.
+

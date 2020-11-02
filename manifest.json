@@ -1,0 +1,21 @@
+{
+	"manifest_version": 2,
+	"name": "Get stream",
+	"version": "1.0",
+
+	"description": "Gets the URL for the live stream you're watching",
+	"browser_action": {
+		"default_title": "Get stream link",
+		"default_icon": "browser.png",
+		"default_popup": "popup/main.html",
+		"browser_style": true
+	},
+	"permissions": [
+		"notifications",
+		"clipboardWrite",
+		"webRequest",
+		"webRequestBlocking",
+		"<all_urls>"
+	],
+	"homepage_url": "http://google.com"
+}
