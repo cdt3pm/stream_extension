@@ -2,7 +2,9 @@
 Browser extension which copies the current m3u8 stream playing from the browser to the clipboard.
 
 Streamlink: https://streamlink.github.io/
+
 VLC: https://www.videolan.org/vlc/
+
 Importing a stream extension: https://developer.chrome.com/extensions/getstarted#manifest
 
 To use:
