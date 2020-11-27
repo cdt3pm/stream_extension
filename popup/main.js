@@ -2,7 +2,22 @@ let found = false;
 
 function handleRequest(details) {
 	if (!found && details.initiator) {
-		const command = "streamlink --player-continuous-http --http-header \"Referer=" + details.initiator + "\" " + details.url + " best";
+		let referer = null;
+
+		if (details.requestHeaders) {
+			for (let i = 0; i < details.requestHeaders.length; i++) {
+				const header = details.requestHeaders[i];
+
+				if (header.name.toLowerCase() == "referer") {
+					referer = header.value;
+					break;
+				}
+			}
+		}
+
+		const command = referer ?
+			"streamlink --player-continuous-http --http-header \"Referer=" + referer + "\" --http-header \"Origin=" + details.initiator + "\" " + details.url + " best" :
+			"streamlink --player-continuous-http --http-header \"Origin=" + details.initiator + "\" " + details.url + " best";
 		found = true;
 
 		copyTextToClipboard(command);
@@ -37,6 +52,6 @@ function copyTextToClipboard(text) {
 }
 
 document.getElementById("getStreamUrl").onclick = function () {
-	chrome.webRequest.onSendHeaders.addListener(handleRequest, { urls: ["http://*/*.m3u8*", "https://*/*.m3u8?*"] });
+	chrome.webRequest.onSendHeaders.addListener(handleRequest, { urls: ["http://*/*.m3u8*", "https://*/*.m3u8?*"] }, ['requestHeaders', 'extraHeaders']);
 };
 
