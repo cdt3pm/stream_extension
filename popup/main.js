@@ -52,6 +52,6 @@ function copyTextToClipboard(text) {
 }
 
 document.getElementById("getStreamUrl").onclick = function () {
-	chrome.webRequest.onSendHeaders.addListener(handleRequest, { urls: ["http://*/*.m3u8*", "https://*/*.m3u8?*"] }, ['requestHeaders', 'extraHeaders']);
+	chrome.webRequest.onSendHeaders.addListener(handleRequest, { urls: ["https://*/*.m3u8*", "http://*/*.m3u8*", "https://*/*.m3u8?*"] }, ['requestHeaders', 'extraHeaders']);
 };
 
